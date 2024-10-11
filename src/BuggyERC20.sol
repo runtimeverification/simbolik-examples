@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: BSD-3-Clause
-pragma solidity ^0.8.24;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.13;
 
 /**
  * This is a simple ERC20 token, with a bug in the transfer function.
@@ -7,7 +7,7 @@ pragma solidity ^0.8.24;
 contract BuggyERC20 {
     string public name = "BuggyERC20";
     string public symbol = "BUG";
-    uint8 public decimals = 10;
+    uint8 public decimals = 18;
     uint256 public totalSupply = 0;
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
@@ -18,6 +18,7 @@ contract BuggyERC20 {
     address public owner;
     constructor() {
         owner = msg.sender;
+        _mint(owner, 1000e18);
     }
 
     function _mint(address to, uint256 amount) internal {
