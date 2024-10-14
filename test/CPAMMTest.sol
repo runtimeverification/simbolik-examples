@@ -5,39 +5,42 @@ import {ERC20} from "../src/ERC20.sol";
 import {CPAMM} from "../src/CPAMM.sol";
 
 contract CPAMMTest {
-
     ERC20 token0;
     ERC20 token1;
     CPAMM cpamm;
-    Actor alice;
-    Actor bob;
+    LiquidityProvider alice;
+    Swapper bob;
 
     constructor() {
-        token0 = new ERC20("token0", "TK0", 18);
-        token1 = new ERC20("token1", "TK1", 18);
+        token0 = new ERC20("token0", "TK0", 0);
+        token1 = new ERC20("token1", "TK1", 0);
         cpamm = new CPAMM(address(token0), address(token1));
-        alice = new Actor("Alice", cpamm);
-        bob = new Actor("Bob", cpamm);
-    }
+        alice = new LiquidityProvider(cpamm);
+        bob = new Swapper(cpamm);
 
-    function debugAddLiquidity() public {
-        token0.mint(address(alice), 100);
-        token1.mint(address(alice), 100);
-        uint256 aliceShares = alice.addLiquidity(100, 100);
-        return;
-    }
-
-    function debugSwap() public {
         // Deal 1000 of each token to Alice and Bob
         token0.mint(address(alice), 1000);
         token1.mint(address(alice), 1000);
         token0.mint(address(bob), 1000);
         token1.mint(address(bob), 1000);
+    }
 
-        // Alice adss liquidity
+    function debugAddLiquidity() public {
+        uint256 aliceShares = alice.addLiquidity(100, 100);
+        return;
+    }
+
+    function debugSwap() public {
+        // Alice's and Bob's balances before the swap
+        uint256 alice0Before = token0.balanceOf(address(alice));
+        uint256 alice1Before = token1.balanceOf(address(alice));
+        uint256 bob0Before = token0.balanceOf(address(bob));
+        uint256 bob1Before = token1.balanceOf(address(bob));
+
+        // Alice adds liquidity
         uint256 aliceShares = alice.addLiquidity(100, 100);
 
-        // Alice swaps 50 tokens
+        // Bob swaps 50 tokens
         bob.swap(address(token0), 50);
 
         // Alice removes liquidity
@@ -48,27 +51,18 @@ contract CPAMMTest {
         uint256 alice1After = token1.balanceOf(address(alice));
         uint256 bob0After = token0.balanceOf(address(bob));
         uint256 bob1After = token1.balanceOf(address(bob));
-
         return;
     }
-
-
 }
 
-
-contract Actor {
-
-    string name;
+/**
+ * An Actor that can add and remove liquidity from a CPAMM
+ */
+contract LiquidityProvider {
     CPAMM cpamm;
 
-    constructor(string memory _name, CPAMM _cpamm) {
-        name = _name;
+    constructor(CPAMM _cpamm) {
         cpamm = _cpamm;
-    }
-
-    function swap(address tokenIn, uint256 amountIn) external {
-        ERC20(tokenIn).approve(address(cpamm), amountIn);
-        cpamm.swap(tokenIn, amountIn);
     }
 
     function addLiquidity(uint256 amountA, uint256 amountB) external returns (uint256) {
@@ -80,5 +74,20 @@ contract Actor {
     function removeLiquidity(uint256 amount) external {
         cpamm.removeLiquidity(amount);
     }
+}
 
+/**
+ * An Actor that can swap tokens on a CPAMM
+ */
+contract Swapper {
+    CPAMM cpamm;
+
+    constructor(CPAMM _cpamm) {
+        cpamm = _cpamm;
+    }
+
+    function swap(address tokenIn, uint256 amountIn) external {
+        ERC20(tokenIn).approve(address(cpamm), amountIn);
+        cpamm.swap(tokenIn, amountIn);
+    }
 }
