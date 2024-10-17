@@ -2,5 +2,10 @@
 src = "src"
 out = "out"
 libs = ["lib"]
-
-# See more config options https://github.com/foundry-rs/foundry/tree/master/config
+optimizer = false
+build_info = true
+extra_output = ["storageLayout", "evm.bytecode.generatedSources"]
+bytecode_hash = "ipfs"
+cbor_metadata = true
+cache = false
+solc_version = "0.8.24"

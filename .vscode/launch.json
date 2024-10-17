@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "BuildBear: Alice adds Liquidity",
+            "type": "solidity",
+            "request": "attach",
+            "txHash": "0x6a6f6c719243ef4e566643e7df156f0621aed3cfd6a0be14f12e5b4ac67f0613",
+            "jsonRpcUrl": "https://rpc.buildbear.io/raoul",
+            "sourcifyUrl": "https://rpc.buildbear.io/verify/sourcify/server/raoul",
+            "stopAtFirstOpcode": true,
+            "chainId": 21027
+        },
+        {
+            "name": "BuildBear: Bob swaps",
+            "type": "solidity",
+            "request": "attach",
+            "txHash": "0x57580daf2c26f9bd0fdbd37fc3aab385743ccaf13ae20cad5130c43b2ba1b111",
+            "jsonRpcUrl": "https://rpc.buildbear.io/raoul",
+            "sourcifyUrl": "https://rpc.buildbear.io/verify/sourcify/server/raoul",
+            "stopAtFirstOpcode": true,
+            "chainId": 21027,
+        }
+    ]
+}
