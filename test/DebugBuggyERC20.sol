@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 import "../src/BuggyERC20.sol";
 
-contract DebugToken is BuggyERC20 {
+contract DebugBuggyERC20 is BuggyERC20 {
 
     address public constant ALICE = address(0x100);
     address public constant BOB = address(0x200);

@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import {ERC20} from "../src/ERC20.sol";
 import {CPAMM} from "../src/CPAMM.sol";
 
-contract CPAMMTest {
+contract DebugCPAMM {
     ERC20 token0;
     ERC20 token1;
     CPAMM cpamm;
