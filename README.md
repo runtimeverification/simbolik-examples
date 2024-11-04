@@ -1,6 +1,10 @@
 # Simbolik Example
 
-Welcome to the Simbolik Example repository, your gateway to exploring Simbolik - the Solidity Debugger.
+Welcome to the Simbolik Example repository. This projects contains Solidity projects of varying complexity to showcase the capabilities of Simbolik.
+
+* [./counter](./counter) - A simple counter contract. The hello world of smart contracts.
+* [./erc20](./erc20) - A simple buggy ERC20 token contract.
+* [./amm](./amm) - A constant product automated market maker.
 
 ## Getting Started
 

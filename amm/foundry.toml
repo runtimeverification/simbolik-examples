@@ -9,3 +9,10 @@ bytecode_hash = "ipfs"
 cbor_metadata = true
 cache = false
 solc_version = "0.8.24"
+
+[rpc_endpoints]
+buildbear = "https://rpc.buildbear.io/raoul"
+anvil = "http://localhost:8545"
+
+[profile.sourcify]
+url= "https://rpc.buildbear.io/verify/sourcify/server/raoul"
