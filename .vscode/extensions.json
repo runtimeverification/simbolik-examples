@@ -1,0 +1,6 @@
+{
+	"recommendations": [
+        "tintinweb.vscode-solidity-language",
+		"runtimeverification.simbolik"
+	]
+}
