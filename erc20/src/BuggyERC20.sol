@@ -1,12 +1,10 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import { IERC20 } from "./IERC20.sol";
-
 /**
  * This is a simple ERC20 token, with a bug in the transfer function.
  */
-contract BuggyERC20 is IERC20 {
+contract BuggyERC20 {
     string public name = "BuggyERC20";
     string public symbol = "BUG";
     uint8 public decimals = 18;
