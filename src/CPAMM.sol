@@ -4,8 +4,8 @@ pragma solidity ^0.8.13;
 // The original contract is from Solidity by Example.
 // See: https://solidity-by-example.org/defi/constant-product-amm/
 contract CPAMM {
-    IERC20 public immutable token0;
-    IERC20 public immutable token1;
+    IERC20 public token0;
+    IERC20 public token1;
 
     uint256 public reserve0;
     uint256 public reserve1;

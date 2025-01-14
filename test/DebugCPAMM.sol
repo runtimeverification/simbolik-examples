@@ -11,7 +11,7 @@ contract DebugCPAMM {
     LiquidityProvider alice;
     Swapper bob;
 
-    constructor() {
+    function setUp() public {
         token0 = new ERC20("token0", "TK0", 0);
         token1 = new ERC20("token1", "TK1", 0);
         cpamm = new CPAMM(address(token0), address(token1));
